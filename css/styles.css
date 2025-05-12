@@ -1,0 +1,335 @@
+/* Schriftarten von eigenem Server oder hochgeladenen Dateien */
+@font-face {
+    font-family: 'BwGradual';
+    src: url(/fonts/BwGradual-Medium.otf) format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'BwGradualItalic';
+    src: url(/fonts/BwGradual-MediumItalic.otf) format('opentype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+/* Body und andere Elemente */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    padding-bottom:150px;
+}
+
+.right-side h1{
+    font-family: 'BwGradual', sans-serif;  /* Dein Name in normaler Schriftart */
+    font-weight: 100;
+    margin: 0;
+    font-size: 1.5rem;
+    margin-left:20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px 20px 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    
+}
+
+header h1 a{
+    font-family: 'BwGradual', sans-serif;  /* Dein Name in normaler Schriftart */
+    font-weight: 100;
+    margin: 0;
+    font-size: 1.5rem;
+    margin-left:20px;
+}
+
+header a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-left: 20px;
+}
+
+.portfolio {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 40px;
+}
+
+.portfolio-item {
+    position: relative;
+    padding: 0;  /* Kein zusätzlicher Abstand mehr */
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center; /* Zentriert den Inhalt */
+    align-items: center;
+    height: 200px;  /* Feste Höhe der Portfolio-Item */
+}
+
+.portfolio-item img {
+    width: 100%;
+    height: 100%; /* Volle Höhe des Containers */
+    object-fit: cover;   /* Bild wird beschnitten, um den Container auszufüllen */
+    border-radius: 8px;
+    transition: 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.portfolio-item .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(66, 39, 11, 0.8);  /* Angenehmes erdorange mit Transparenz */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.portfolio-item:hover img {
+    opacity: 0.8;
+}
+
+.portfolio-item:hover .overlay {
+    opacity: 1;
+}
+
+.portfolio-item .overlay h3 {
+    color: white;  /* Weißer Text */
+    font-family: 'BwGradualItalic', sans-serif;  /* Kursive Schriftart für Titel der Projekte */
+    font-size: 1.5rem;
+    margin: 10px 0;
+    letter-spacing: 1px;  /* Reduzierte Laufweite */
+    transition: letter-spacing 0.3s ease-in-out;
+}
+
+.portfolio-item .overlay p {
+    color: white;  /* Weißer Text */
+    font-size: 1rem;
+    opacity: 0;
+    transition: opacity 0.3s ease 0.2s;
+}
+
+.portfolio-item:hover .overlay h3 {
+    letter-spacing: 3px;  /* Reduzierte Laufweite bei Hover */
+}
+
+.portfolio-item:hover .overlay p {
+    opacity: 1;
+}
+
+.portfolio-item .badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #656363;
+    color: #fff;
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    font-weight:400;
+    border-radius: 5px;
+}
+
+
+
+
+/* Video unterhalb des Grids */
+.video-section {
+    position: relative;
+    width: 100%;                /* Maximale Breite des Containers */
+    max-width: 1200px;           /* Maximale Breite für größere Bildschirme */
+    height: auto;               /* Höhe wird dynamisch basierend auf dem Video-Seitenverhältnis gesetzt */
+    display: flex;
+    justify-content: center;    /* Zentriert das Video */
+    align-items: center;        /* Zentriert das Video */
+    padding: 0 20px;            /* Rand links und rechts hinzufügen */
+    box-sizing: border-box;     /* Bezieht Padding mit ein */
+    margin: 20px auto;          /* Zentriert den Video-Container horizontal */
+}
+
+/* Das Video nimmt die vollständige Breite und Höhe des Containers ein */
+.background-video {
+    width: 100%;                /* Video nimmt 100% der Breite des Containers ein */
+    height: auto;               /* Höhe wird basierend auf der Breite und dem Seitenverhältnis gesetzt */
+    object-fit: contain;        /* Das Video wird so skaliert, dass es vollständig sichtbar bleibt */
+    z-index: 1;                 /* Video liegt unter dem Button */
+    border-radius: 8px;         /* Ecken des Videos abrunden */
+}
+
+/* Button für Ton ein/aus, immer auf dem Video, oben */
+.mute-button {
+    position: absolute;
+    top: 10px;                  /* 10px Abstand vom oberen Rand */
+    left: 20px;                 /* 20px Abstand vom linken Rand */
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 2;                 /* Button wird über dem Video angezeigt */
+    transition: background-color 0.3s ease;
+}
+
+.mute-button:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Medienabfrage für kleinere Bildschirme */
+@media (max-width: 768px) {
+    .video-section {
+        width: 90%;              /* Video nimmt 90% der Breite auf kleineren Bildschirmen ein */
+    }
+
+    .mute-button {
+        top: 10px;               /* Button bleibt oben */
+        left: 10px;              /* Weniger Abstand von links auf kleinen Bildschirmen */
+        padding: 8px 16px;       /* Kleinere Padding-Werte auf kleinen Bildschirmen */
+    }
+}
+
+
+
+/* Grundlegende Stile für den Body */
+.projekt-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Linke Seite mit der Collage */
+.left-side {
+    flex: 1 1 50%; /* Die linke Seite nimmt 60% des Platzes ein */
+    padding: 20px;
+    padding-top:80px;
+    box-sizing: border-box;
+}
+
+/* Rechte Seite mit dem Text */
+.right-side {
+    flex: 1 1 50%; 
+    padding: 80px;
+    box-sizing: border-box;
+    position: sticky;
+    top: 0; 
+    height: 100vh; /* Stellt sicher, dass die rechte Seite die gesamte Höhe des Bildschirms ausfüllt */
+    overflow-y: auto; /* Ermöglicht das Scrollen, wenn der Inhalt zu groß ist */
+}
+
+.right-side p {
+    font-size: 16px; /* Optimale Schriftgröße für lesbare Textdarstellung */
+    line-height: 1.6; /* Zeilenhöhe für eine entspannte Lesbarkeit */
+    font-family: 'Arial', sans-serif; /* Eine gut lesbare Schriftart */
+    color: #333; /* Dunkelgrau für besseren Kontrast */
+    margin-bottom: 1.5em; /* Abstand zwischen den Absätzen */
+    text-align: left; /* Text wird schön ausgerichtet */
+    letter-spacing: 0.5px; /* Etwas Abstand zwischen den Buchstaben für bessere Lesbarkeit */
+}
+
+
+/* Die Collage wird als Grid angeordnet */
+.collage {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 Spalten */
+    gap: 10px;
+}
+
+/* Bilder innerhalb der Collage */
+.image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover; /* Passt das Bild an den Container an */
+}
+.image .video-section{
+
+
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 Verhältnis */
+
+}
+.image .video-section iframe{
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+/* Responsives Design: Wenn der Bildschirm kleiner als 768px ist */
+@media (max-width: 768px) {
+    .left-side, .right-side {
+        flex: 1 1 100%; /* Beide Seiten nehmen 100% des Platzes ein */
+        padding:20px;
+    }
+
+    .right-side {
+        padding:50px;
+
+    }
+
+    .collage {
+        grid-template-columns: repeat(2, 1fr); /* 2 Spalten auf kleinen Bildschirmen */
+    }
+
+    .image {
+        grid-column: span 1; /* Jedes Bild nimmt nur eine Spalte ein */
+    }
+}
+
+/* Responsives Design für sehr kleine Bildschirme (z.B. Smartphones) */
+@media (max-width: 480px) {
+    .collage {
+        grid-template-columns: 1fr;
+    }
+
+    .image {
+        grid-column: 1 / -1 !important; /* ignoriert span 4, span 2 etc. */
+    }
+}
+
+.custom-button {
+    display: inline-block;
+    padding: 10px 20px; /* Größe des Buttons */
+    font-size: 16px; /* Schriftgröße */
+    font-weight: bold; /* Fettgedruckter Text */
+    background-color: #666; /* Grauton, passend zu deiner Webseite */
+    color: #fff; /* Weißer Text */
+    text-align: center; /* Text zentrieren */
+    text-decoration: none; /* Entfernt den Unterstrich */
+    border-radius: 5px; /* Abgerundete Ecken */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Sanfte Übergänge bei Interaktionen */
+}
+
+.custom-button:hover {
+    background-color: #444; /* Dunklerer Grauton beim Hover-Effekt */
+    transform: translateY(-2px); /* Button hebt sich leicht an */
+}
+
+.custom-button:active {
+    transform: translateY(2px); /* Button "drückt sich" beim Klicken */
+}
